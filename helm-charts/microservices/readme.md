@@ -21,7 +21,7 @@ Installation of Helm and the main repositories
 ------------------------------------------
 To install helm please refer to https://helm.sh/docs/intro/install/
 
-	$ helm init   																						# Tiller was removed in helm 3 => no need for helm init (Tiller was the server) (https://github.com/helm/helm/issues/7052)
+	$ helm init # Tiller was removed in helm 3 => no need for helm init (Tiller was the server) (https://github.com/helm/helm/issues/7052)
 	$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 	$ helm repo add bitnami https://charts.bitnami.com/bitnami
 	$ helm repo update

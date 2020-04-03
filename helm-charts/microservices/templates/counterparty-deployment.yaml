@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "microservices.fullname" . }}.counterparty-service
-  namespace: {{ .Release.Namespace }} 
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "microservices.labels" . | nindent 4 }}
     {{- include "microservices.labels" . | nindent 4 }}.counterparty-service
@@ -27,9 +27,9 @@ spec:
       initContainers:
          - name: check-db-ready
            image: postgres:12.1-alpine
-           command: ['sh', '-c', 
-             'until pg_isready -h {{ .Release.Name }}-counterparty-db -p 5432; 
-             do echo waiting for database; sleep 2; done;']                   
+           command: ['sh', '-c',
+             'until pg_isready -h {{ .Release.Name }}-counterparty-db -p 5432;
+             do echo waiting for database; sleep 2; done;']
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -44,11 +44,11 @@ spec:
             - name: THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_COUNTERPARTYDS_CONNECTION_DASH_URL
               value: "jdbc:postgresql://{{ .Release.Name }}-counterparty-db:5432/counterparty"
             - name: THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_COUNTERPARTYDS_DRIVER_DASH_NAME
-              value: "postgresql"   
+              value: "postgresql"
             - name: THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_COUNTERPARTYDS_USER_DASH_NAME
               value: "cpty"
             - name: THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_COUNTERPARTYDS_PASSWORD
-              value: "cpty"              
+              value: "cpty"
           ports:
             - name: http
               containerPort: 28080
@@ -57,14 +57,14 @@ spec:
             httpGet:
               path: /counterparties/count
               port: http
-            initialDelaySeconds: 60
+            initialDelaySeconds: {{ .Values.liveness.delay }}
             periodSeconds: 20                            
           readinessProbe:
             httpGet:
               path: /counterparties/count
               port: http
-            initialDelaySeconds: 60
-            periodSeconds: 20                            
+            initialDelaySeconds: {{ .Values.liveness.delay }}
+            periodSeconds: 20
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

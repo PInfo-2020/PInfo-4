@@ -9,13 +9,19 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+liveness:
+  delay: 3000
 
 kafka:
   zookeeper:
      persistence:
         enabled: false
   persistence:
-     enabled: false
+     enabled: false4
+  livenessProbe:
+    initialDelaySeconds: 3000
+  readinessProbe:
+    initialDelaySeconds: 3000
 
 counterparty-db:
   driver_name: org.postgresql
@@ -55,8 +61,12 @@ keycloak:
     extraVolumeMounts: |
       - name: keycloak-realm-secret
         mountPath: "/realm/"
-        readOnly: true          
+        readOnly: true
     extraArgs: -Dkeycloak.import=/realm/realms.json
+    livenessProbe: |
+      initialDelaySeconds: 3000
+    readinessProbe: |
+      initialDelaySeconds: 3000
 
 imagePullSecrets: []
 nameOverride: ""
@@ -106,5 +116,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-
