@@ -40,6 +40,10 @@ Configuring the cluster for the pinfo application
 	$ kubectl delete configmap counterparty-scripts
 	$ kubectl create configmap counterparty-scripts  --from-file ./test-data/100_counterparties.sql.gz
 
+Generating a token to access the dashboard 
+------------------------------------------
+https://www.replex.io/blog/how-to-install-access-and-add-heapster-metrics-to-the-kubernetes-dashboard
+
 Start the application
 ---------------------
 from the chart directory (the one with `Chart.yaml` in it):

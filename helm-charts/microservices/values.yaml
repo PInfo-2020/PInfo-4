@@ -15,23 +15,23 @@ liveness:
 kafka:
   zookeeper:
      persistence:
-        enabled: false
+        enabled: true # false, false for Steve as Windows has a bug with persistence
   persistence:
-     enabled: false4
+     enabled: true # false4, false for Steve as Windows has a bug with persistence
   livenessProbe:
     initialDelaySeconds: 3000
   readinessProbe:
-    initialDelaySeconds: 3000
+    initialDelaySeconds: 120
 
 counterparty-db:
   driver_name: org.postgresql
   persistence:
-     enabled: false
+     enabled: true # false, false for Steve as Windows has a bug with persistence
   postgresDatabase: counterparty
   postgresqlDatabase: counterparty
   global:
       persistence:
-         enabled: false
+         enabled: true # false, false for Steve as Windows has a bug with persistence
       postgresqlDatabase: counterparty
   initdbScriptsConfigMap:
     counterparty-scripts
@@ -39,13 +39,13 @@ counterparty-db:
 instrument-db:
   driver_name: org.postgresql
   persistence:
-     enabled: false
+     enabled: true # false, false for Steve as Windows has a bug with persistence
   postgresUser: inst
   postgresDatabase: instrument
   postgresqlDatabase: instrument
   global:
       persistence:
-         enabled: false
+         enabled: true # false, false for Steve as Windows has a bug with persistence
       postgresqlDatabase: instrument
   initdbScriptsConfigMap:
     instrument-scripts
@@ -66,7 +66,7 @@ keycloak:
     livenessProbe: |
       initialDelaySeconds: 3000
     readinessProbe: |
-      initialDelaySeconds: 3000
+      initialDelaySeconds: 120
 
 imagePullSecrets: []
 nameOverride: ""
