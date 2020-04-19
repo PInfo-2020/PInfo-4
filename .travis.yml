@@ -8,12 +8,12 @@ addons:
     token: # Sonarcloud login token
       secure: Hi49MH8gnqEKSPAG+r+ARp1wAp48AEMFC77d0elqVOFMtJpxdSTTDB4rTyAMHRbyGKjVedRk/MaiJ8E98VTINWKjwi+9pPCH3HOsjvwG/D9G36u3lqEsY6ynwty5gHoBX+ugF90N/zMutL0SIzVqdXVSzrrsfcK9cwSILdF0QQesU+YoOf0BcCWpAjxvaiInd9XLhNX1rAUR9zWOZ38sYSvBVVCZ9KvnKL8hh2cz1sNcdvHg+1mWBi0Z1mAPpS3FZ8wk5zLEgYTFv1Xvt+Xbn1zIX5RnlbQWjpJirdnbnXJuL+NIrfXiXD4WTt3jfd73UXA/wFx3M29C41Jg80J5+sT18GOCIvTiSk3QDhZONGa310EpH7TUXB+s6T7S6eVpaR84jgCizXwymNOAq+i/9L5KG6qc2dRr5iCxO7vklbiHnA6I2nOsrYjmwAMTByegnd8+kH4+GE0eIgPmxrvQft2wWV3EeT4i4UpxoU4jBSQsSjv++BWPWfkzUPykqb2uylnYyY3QHF19E/w/JZw5Lk9ifaom5afBDU6c7B1t7bNADlrfjMW+ny/GAzxrRFd2rUNiILyFr7nTR6D2w8bIAuEaO8KaZSIa9WTuJOru76L8xQmUi9mvM6ur7USm9bKHn3XcL03qNLI/teDFt3u1f7Wx4+Mx3+ynJE6xLUjXXfU=
 
+before_install:
+  - curl -L https://git.io/get_helm.sh | bash
+  - helm init --client-only
+
 jobs:
   include:
-  - stage: Prepare
-    script:
-    - curl -L https://git.io/get_helm.sh | bash
-    - helm init --client-only
   - stage: Test
     script:
     - mvn sonar:sonar -Dsonar.projectKey=PInfo-2020_PInfo-4 -Dsonar.organization=pinfo-2020 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=dcc92ae7dc64eccb859dcb446883d405a94733bd -Dsonar.projectName=Kernel_pinfo4
