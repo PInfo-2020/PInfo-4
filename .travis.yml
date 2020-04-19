@@ -22,7 +22,8 @@ jobs:
   - stage: Build
     script:
     - mkdir files-to-gh-pages
-    - echo $(pwd)
+    - pwd
+    - ls
     - helm package helm-charts/microservices -d files-to-gh-pages
     - cd files-to-gh-pages
     - helm repo index .
