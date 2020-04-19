@@ -12,22 +12,19 @@ before_install:
   - curl -L https://git.io/get_helm.sh | bash
   - helm init --client-only
 
-jobs:
-  include:
-  - stage: Test
-    script:
-    - mvn sonar:sonar -Dsonar.projectKey=PInfo-2020_PInfo-4 -Dsonar.organization=pinfo-2020 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=dcc92ae7dc64eccb859dcb446883d405a94733bd -Dsonar.projectName=Kernel_pinfo4
-    # TODO: Run all tests
-    # -  mvn '-Dtest=de.mypackage.*Test' test   # Something like this??
-  - stage: Build
-    script:
-    - mkdir files-to-gh-pages
-    - pwd
-    - ls
-    - helm package helm-charts/microservices -d files-to-gh-pages
-    - cd files-to-gh-pages
-    - helm repo index .
-    - ls -ltr
+
+# TODO: Tests
+# - mvn sonar:sonar -Dsonar.projectKey=PInfo-2020_PInfo-4 -Dsonar.organization=pinfo-2020 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=dcc92ae7dc64eccb859dcb446883d405a94733bd -Dsonar.projectName=Kernel_pinfo4
+# TODO: Run all tests
+# -  mvn '-Dtest=de.mypackage.*Test' test   # Something like this??
+script:
+  - mkdir files-to-gh-pages
+  - pwd
+  - ls
+  - helm package helm-charts/microservices -d files-to-gh-pages
+  - cd files-to-gh-pages
+  - helm repo index .
+  - ls -ltr
 
 deploy:
     provider: pages
