@@ -27,8 +27,9 @@ before_install:
 script:
   - cd $TRAVIS_BUILD_DIR
   - mkdir files-to-gh-pages
-  - echo $(pwd)
-  - echo $(ls)
+  - pwd
+  - ls
+  - helm version
   - helm package helm-charts/microservices -d files-to-gh-pages
   - cd files-to-gh-pages
   - helm repo index .
