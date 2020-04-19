@@ -10,28 +10,31 @@ image:
   pullPolicy: IfNotPresent
 
 liveness:
-  delay: 3000
+  delay: 100
 
 kafka:
   zookeeper:
      persistence:
-        enabled: true # false, false for Steve as Windows has a bug with persistence
+        enabled: true # false for Steve as Windows has a bug with persistence
+        storageClass: microk8s
   persistence:
-     enabled: true # false4, false for Steve as Windows has a bug with persistence
+     enabled: true # false for Steve as Windows has a bug with persistence
+     storageClass: microk8s
   livenessProbe:
-    initialDelaySeconds: 3000
-  readinessProbe:
     initialDelaySeconds: 120
+  readinessProbe:
+    initialDelaySeconds: 60
 
 counterparty-db:
   driver_name: org.postgresql
   persistence:
      enabled: true # false, false for Steve as Windows has a bug with persistence
+     storageClass: microk8s
   postgresDatabase: counterparty
   postgresqlDatabase: counterparty
   global:
       persistence:
-         enabled: true # false, false for Steve as Windows has a bug with persistence
+         enabled: false #true # false, false for Steve as Windows has a bug with persistence
       postgresqlDatabase: counterparty
   initdbScriptsConfigMap:
     counterparty-scripts
@@ -40,12 +43,13 @@ instrument-db:
   driver_name: org.postgresql
   persistence:
      enabled: true # false, false for Steve as Windows has a bug with persistence
+     storageClass: microk8s
   postgresUser: inst
   postgresDatabase: instrument
   postgresqlDatabase: instrument
   global:
       persistence:
-         enabled: true # false, false for Steve as Windows has a bug with persistence
+         enabled: false #true # false, false for Steve as Windows has a bug with persistence
       postgresqlDatabase: instrument
   initdbScriptsConfigMap:
     instrument-scripts
@@ -63,10 +67,6 @@ keycloak:
         mountPath: "/realm/"
         readOnly: true
     extraArgs: -Dkeycloak.import=/realm/realms.json
-    livenessProbe: |
-      initialDelaySeconds: 3000
-    readinessProbe: |
-      initialDelaySeconds: 120
 
 imagePullSecrets: []
 nameOverride: ""
