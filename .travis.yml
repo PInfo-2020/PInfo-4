@@ -20,7 +20,6 @@ before_install:
   - wget ${HELM_URL}/${HELM_TGZ}
   - tar xzfv ${HELM_TGZ}
   - PATH=`pwd`/linux-amd64/:$PATH
-  - helm init --client-only
   # Unencrypt ssh-key for VM
   - cd $TRAVIS_BUILD_DIR
   - pwd
