@@ -50,7 +50,7 @@ deploy:
     local_dir: files-to-gh-pages
     target_branch: gh-pages
     verbose: true
-    cleanup: false
+    skip_cleanup: true
     keep_history: true
     on:
       branch: master
