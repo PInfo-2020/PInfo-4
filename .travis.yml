@@ -4,7 +4,7 @@ if: branch = master
 env:
   global:
     - HELM_URL=https://get.helm.sh
-    - HELM_TGZ=helm-v3.2.0-rc.1-linux-s390x.tar.gz
+    - HELM_TGZ=helm-v3.2.0-rc.1-linux-amd64.tar.gz
     # - HELM_URL=https://storage.googleapis.com/kubernetes-helm
     # - HELM_TGZ=helm-v2.4.1-linux-amd64.tar.gz # TODO: Change version
 
