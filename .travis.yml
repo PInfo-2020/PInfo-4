@@ -26,9 +26,9 @@ before_install:
   - ssh-add /tmp/pinfo4_deploy_rsa
 
 script:
-# Static analysis
+  # Static analysis
   - mvn sonar:sonar -Dsonar.projectKey=PInfo-2020_PInfo-4 -Dsonar.organization=pinfo-2020 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=dcc92ae7dc64eccb859dcb446883d405a94733bd -Dsonar.projectName=Kernel_pinfo4
-# Build helm repo
+  # Build helm package
   - cd $TRAVIS_BUILD_DIR
   - mkdir files-to-gh-pages
   - helm version
@@ -37,16 +37,17 @@ script:
   - helm repo index .
 
 deploy:
-    provider: pages
-    github_token: $GITHUB_TOKEN
-    local_dir: files-to-gh-pages
-    target_branch: gh-pages
-    verbose: true
-    skip_cleanup: true
-    keep_history: true
-    on:
-      branch: master
-
-after_deploy:
-  # Install helm repo on VM (terminate build on script failure)
-  - if ! ssh smithlu7@129.194.69.131 'bash ' < deploy_vm.sh; then travis_terminate 1; fi
+    - provider: pages
+      github_token: $GITHUB_TOKEN
+      local_dir: files-to-gh-pages
+      target_branch: gh-pages
+      verbose: true
+      skip_cleanup: true
+      keep_history: true
+      on:
+        branch: master
+    - provider: script
+      skip_cleanup: true
+      script: ssh smithlu7@129.194.69.131 'bash ' < deploy_vm.sh
+      on:
+        branch: master
