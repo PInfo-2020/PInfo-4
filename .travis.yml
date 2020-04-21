@@ -57,4 +57,4 @@ script:
   - ssh smithlu7@129.194.69.131 'echo $PATH'
   - ssh smithlu7@129.194.69.131 'helm repo add hung-repo https://pinfo-2020.github.io/PInfo-4/'
   - ssh smithlu7@129.194.69.131 'helm repo update'
-  - ssh smithlu7@129.194.69.131 'helm install hung-repo/microservices --name pinfo-v1'
+  - ssh smithlu7@129.194.69.131 'helm install pinfo-v1 hung-repo/microservices'
