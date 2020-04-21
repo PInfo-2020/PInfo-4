@@ -5,21 +5,19 @@ env:
   global:
     - HELM_URL=https://get.helm.sh
     - HELM_TGZ=helm-v3.2.0-rc.1-linux-amd64.tar.gz
-    # - HELM_URL=https://storage.googleapis.com/kubernetes-helm
-    # - HELM_TGZ=helm-v2.4.1-linux-amd64.tar.gz # TODO: Change version
 
 addons:
   ssh_known_hosts: smithlu7@129.194.69.131
   sonarcloud:
     organization: pinfo-2020
-    token: # Sonarcloud login token
-      secure: Hi49MH8gnqEKSPAG+r+ARp1wAp48AEMFC77d0elqVOFMtJpxdSTTDB4rTyAMHRbyGKjVedRk/MaiJ8E98VTINWKjwi+9pPCH3HOsjvwG/D9G36u3lqEsY6ynwty5gHoBX+ugF90N/zMutL0SIzVqdXVSzrrsfcK9cwSILdF0QQesU+YoOf0BcCWpAjxvaiInd9XLhNX1rAUR9zWOZ38sYSvBVVCZ9KvnKL8hh2cz1sNcdvHg+1mWBi0Z1mAPpS3FZ8wk5zLEgYTFv1Xvt+Xbn1zIX5RnlbQWjpJirdnbnXJuL+NIrfXiXD4WTt3jfd73UXA/wFx3M29C41Jg80J5+sT18GOCIvTiSk3QDhZONGa310EpH7TUXB+s6T7S6eVpaR84jgCizXwymNOAq+i/9L5KG6qc2dRr5iCxO7vklbiHnA6I2nOsrYjmwAMTByegnd8+kH4+GE0eIgPmxrvQft2wWV3EeT4i4UpxoU4jBSQsSjv++BWPWfkzUPykqb2uylnYyY3QHF19E/w/JZw5Lk9ifaom5afBDU6c7B1t7bNADlrfjMW+ny/GAzxrRFd2rUNiILyFr7nTR6D2w8bIAuEaO8KaZSIa9WTuJOru76L8xQmUi9mvM6ur7USm9bKHn3XcL03qNLI/teDFt3u1f7Wx4+Mx3+ynJE6xLUjXXfU=
+    # token: # Sonarcloud login token
+    #   secure: Hi49MH8gnqEKSPAG+r+ARp1wAp48AEMFC77d0elqVOFMtJpxdSTTDB4rTyAMHRbyGKjVedRk/MaiJ8E98VTINWKjwi+9pPCH3HOsjvwG/D9G36u3lqEsY6ynwty5gHoBX+ugF90N/zMutL0SIzVqdXVSzrrsfcK9cwSILdF0QQesU+YoOf0BcCWpAjxvaiInd9XLhNX1rAUR9zWOZ38sYSvBVVCZ9KvnKL8hh2cz1sNcdvHg+1mWBi0Z1mAPpS3FZ8wk5zLEgYTFv1Xvt+Xbn1zIX5RnlbQWjpJirdnbnXJuL+NIrfXiXD4WTt3jfd73UXA/wFx3M29C41Jg80J5+sT18GOCIvTiSk3QDhZONGa310EpH7TUXB+s6T7S6eVpaR84jgCizXwymNOAq+i/9L5KG6qc2dRr5iCxO7vklbiHnA6I2nOsrYjmwAMTByegnd8+kH4+GE0eIgPmxrvQft2wWV3EeT4i4UpxoU4jBSQsSjv++BWPWfkzUPykqb2uylnYyY3QHF19E/w/JZw5Lk9ifaom5afBDU6c7B1t7bNADlrfjMW+ny/GAzxrRFd2rUNiILyFr7nTR6D2w8bIAuEaO8KaZSIa9WTuJOru76L8xQmUi9mvM6ur7USm9bKHn3XcL03qNLI/teDFt3u1f7Wx4+Mx3+ynJE6xLUjXXfU=
 
 before_install:
   # Install helm
-  # - wget ${HELM_URL}/${HELM_TGZ}
-  # - tar xzfv ${HELM_TGZ}
-  # - PATH=`pwd`/linux-amd64/:$PATH
+  - wget ${HELM_URL}/${HELM_TGZ}
+  - tar xzfv ${HELM_TGZ}
+  - PATH=`pwd`/linux-amd64/:$PATH
   # Unencrypt ssh-key for VM
   - cd $TRAVIS_BUILD_DIR
   - openssl aes-256-cbc -K $encrypted_ba497ca00145_key -iv $encrypted_ba497ca00145_iv -in pinfo4_deploy_rsa.enc -out /tmp/pinfo4_deploy_rsa -d
@@ -27,34 +25,28 @@ before_install:
   - chmod 600 /tmp/pinfo4_deploy_rsa
   - ssh-add /tmp/pinfo4_deploy_rsa
 
-# script:
-# Static analysis
-# # - mvn sonar:sonar -Dsonar.projectKey=PInfo-2020_PInfo-4 -Dsonar.organization=pinfo-2020 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=dcc92ae7dc64eccb859dcb446883d405a94733bd -Dsonar.projectName=Kernel_pinfo4
-# # Build helm repo
-#   - cd $TRAVIS_BUILD_DIR
-#   - mkdir files-to-gh-pages
-#   - helm version
-#   - helm package helm-charts/microservices -d files-to-gh-pages
-#   - cd files-to-gh-pages
-#   - helm repo index .
-#
-# deploy:
-#     provider: pages
-#     github_token: $GITHUB_TOKEN
-#     local_dir: files-to-gh-pages
-#     target_branch: gh-pages
-#     verbose: true
-#     skip_cleanup: true
-#     keep_history: true
-#     on:
-#       branch: master
-
-# after_deploy:
 script:
-  # Install helm repo on VM
-  - ssh smithlu7@129.194.69.131 'pwd'
-  - ssh smithlu7@129.194.69.131 'ls'
-  - ssh smithlu7@129.194.69.131 'echo $PATH'
-  - ssh smithlu7@129.194.69.131 'helm repo add hung-repo https://pinfo-2020.github.io/PInfo-4/'
-  - ssh smithlu7@129.194.69.131 'helm repo update'
-  - ssh smithlu7@129.194.69.131 'helm install pinfo-v1 hung-repo/microservices'
+# Static analysis
+- mvn sonar:sonar -Dsonar.projectKey=PInfo-2020_PInfo-4 -Dsonar.organization=pinfo-2020 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=dcc92ae7dc64eccb859dcb446883d405a94733bd -Dsonar.projectName=Kernel_pinfo4
+# Build helm repo
+  - cd $TRAVIS_BUILD_DIR
+  - mkdir files-to-gh-pages
+  - helm version
+  - helm package helm-charts/microservices -d files-to-gh-pages
+  - cd files-to-gh-pages
+  - helm repo index .
+
+deploy:
+    provider: pages
+    github_token: $GITHUB_TOKEN
+    local_dir: files-to-gh-pages
+    target_branch: gh-pages
+    verbose: true
+    skip_cleanup: true
+    keep_history: true
+    on:
+      branch: master
+
+after_deploy:
+  # Install helm repo on VM (terminate build on script failure)
+  - if ! ssh smithlu7@129.194.69.131 'bash ' < deploy_vm.sh; then travis_terminate 1; fi
