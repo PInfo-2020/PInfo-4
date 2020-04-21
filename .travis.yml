@@ -46,7 +46,6 @@ deploy:
         branch: master
     - provider: script
       skip_cleanup: true
-      script: ls
-        # ssh smithlu7@129.194.69.131 'bash ' < deploy_vm.sh
+      script: cd $TRAVIS_BUILD_DIR; ssh smithlu7@129.194.69.131 'bash ' < deploy_vm.sh
       on:
         branch: master
