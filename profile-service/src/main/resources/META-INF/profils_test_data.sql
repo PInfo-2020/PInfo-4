@@ -1,6 +1,6 @@
-drop table Ingrediant if exists;
-drop table RecetteFav if exists;
-drop table Profile if exists;
+drop table Ingrediant if exists cascade;
+drop table RecetteFav if exists cascade;
+drop table Profile if exists cascade;
 drop sequence if exists INGREDIANT_SEQ;
 drop sequence if exists RECETTEFAV_SEQ;
 drop sequence if exists PROFILE_SEQ;

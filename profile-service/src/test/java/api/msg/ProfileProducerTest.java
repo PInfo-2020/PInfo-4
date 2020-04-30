@@ -20,9 +20,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import domain.model.Ingrediant;
-import domain.model.Profile;
-import domain.model.RecetteFav;
+import domain.model.*;
 import domain.service.ProfileService;
 
 @ExtendWith(MockitoExtension.class)
@@ -102,7 +100,7 @@ class ProfileProducerTest {
 		ing3.setIngrediantid(((long) rand.nextInt(100)));
 		ing3.setQuantite(rand.nextInt(100));
 		
-		Set<Ingrediant> Fridge = new HashSet<Ingrediant>();
+		List<Ingrediant> Fridge = new ArrayList<Ingrediant>();
 		Fridge.add(ing);
 		Fridge.add(ing2);
 		Fridge.add(ing3);
@@ -116,7 +114,7 @@ class ProfileProducerTest {
 		RecetteFav re3 = new RecetteFav();
 		re3.setRecetteid((long) 5);
 
-		Set<RecetteFav> Favoris = new HashSet<RecetteFav>();
+		List<RecetteFav> Favoris = new ArrayList<RecetteFav>();
 		Favoris.add(re);
 		Favoris.add(re2);
 		Favoris.add(re3);

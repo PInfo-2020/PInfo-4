@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import domain.service.ProfileServiceImpl; 
+import domain.service.ProfileServiceImpl;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -157,7 +159,7 @@ class ProfileServiceImplTest {
 		ing3.setIngrediantid(((long) rand.nextInt(100)));
 		ing3.setQuantite(rand.nextInt(100));
 		
-		Set<Ingrediant> Fridge = new HashSet<Ingrediant>();
+		List<Ingrediant> Fridge = new ArrayList<Ingrediant>();
 		Fridge.add(ing);
 		Fridge.add(ing2);
 		Fridge.add(ing3);
@@ -171,7 +173,7 @@ class ProfileServiceImplTest {
 		RecetteFav re3 = new RecetteFav();
 		re3.setRecetteid((long) 5);
 
-		Set<RecetteFav> Favoris = new HashSet<RecetteFav>();
+		List<RecetteFav> Favoris = new ArrayList<RecetteFav>();
 		Favoris.add(re);
 		Favoris.add(re2);
 		Favoris.add(re3);

@@ -11,9 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 // Yo
 @Data
-
+@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name ="Ingrediant")
 public class Ingrediant implements Serializable  {
@@ -40,30 +43,27 @@ public class Ingrediant implements Serializable  {
 	@JoinColumn(name="Profile_id",nullable = true)
 	private Profile ingprofile;
 	
-	   @Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	 
-	        if (!(o instanceof Ingrediant))
-	            return false;
-	 
-	        Ingrediant other = (Ingrediant) o;
-	 
-	        return id != null &&
-	               id.equals(other.getId());
-	    }
-	 
-	    @Override
-	    public int hashCode() {
-	        return 31;
-	    }
-	    
-	    @Override
-	    public String toString() {
-	        return this.getClass().getSimpleName() + "-" + getId();
-	    }
-	
-	
-	
+//	   @Override
+//	    public boolean equals(Object o) {
+//	        if (this == o) return true;
+//	 
+//	        if (!(o instanceof Ingrediant))
+//	            return false;
+//	 
+//	        Ingrediant other = (Ingrediant) o;
+//	 
+//	        return id != null &&
+//	               id.equals(other.getId());
+//	    }
+//	 
+//	    @Override
+//	    public int hashCode() {
+//	        return 31;
+//	    }
+//	    
+//	    @Override
+//	    public String toString() {
+//	        return this.getClass().getSimpleName() + "-" + getId();
+//	    }
 
 }
