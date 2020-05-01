@@ -28,6 +28,8 @@ before_install:
   - ssh-add /tmp/pinfo4_deploy_rsa
 
 script:
+  # Tests
+  # - mvn install
   # Static analysis
   - mvn sonar:sonar -Dsonar.projectKey=PInfo-2020_PInfo-4 -Dsonar.organization=pinfo-2020 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=dcc92ae7dc64eccb859dcb446883d405a94733bd -Dsonar.projectName=Kernel_pinfo4
   # Build helm package
@@ -51,6 +53,6 @@ deploy:
     # Run deployment script on vm
     - provider: script
       skip_cleanup: true
-      script: cd $TRAVIS_BUILD_DIR; ssh smithlu7@129.194.69.131 'bash ' < deploy_vm.sh
+      script: cd $TRAVIS_BUILD_DIR; ssh smithlu7@129.194.69.131 'bash ' < ./scripts/deploy_vm.sh
       on:
         branch: master
