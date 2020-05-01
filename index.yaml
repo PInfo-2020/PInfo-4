@@ -3,13 +3,21 @@ entries:
   microservices:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-04-21T13:01:08.046322873Z"
+    created: "2020-05-01T09:29:48.573024121Z"
     dependencies:
-    - alias: counterparty-db
+    - alias: ingredients-db
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com
       version: 7.7.2
-    - alias: instrument-db
+    - alias: recipe-db
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 7.7.2
+    - alias: profile-db
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 7.7.2
+    - alias: challenge-db
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com
       version: 7.7.2
@@ -23,10 +31,10 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 7.2.9
     description: A Helm chart for deploying the PINFO microservice architecture
-    digest: a3c0bb02274c2ad2d5d45b74f5d5d2a1ce67b604b2371381c18963690d9d13b3
+    digest: f95a2fa54ecace72d4b580fd17a41efbc934dceef3d3ede7bf198647327c2b3d
     name: microservices
     type: application
     urls:
     - microservices-0.1.0.tgz
     version: 0.1.0
-generated: "2020-04-21T13:01:08.022534447Z"
+generated: "2020-05-01T09:29:48.558616738Z"
