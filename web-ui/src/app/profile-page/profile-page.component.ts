@@ -27,23 +27,34 @@ export class ProfilePageComponent implements OnInit {
   recettes = [ 
     {
       name:'Cake',
-      auteur:'Sajay'
-    },
+      auteur:'Sajay',
+      link : '/recipe'
+    }
+  ]
+
+  favoris = [
     {
-      name:'Brownie',
-      auteur:'Ella'
-    },
-    {
-      name:'Pizza',
-      auteur:'Deniz'
-    },
-    {
-      name:'Juice',
-      auteur:'Mathias'
+      name : 'Cake',
+      auteur : 'Sajay'
     },
     {
       name:'MilkShake',
       auteur:'Luke'
+    }
+  ]
+
+  frigo = [
+    {
+      name : 'Chocolat',
+      quantity : '500 gr'
+    },
+    {
+      name : 'Lait',
+      quantity : '750 ml'
+    },
+    {
+      name : 'Beurre',
+      quantity : '200 gr'
     }
   ]
 

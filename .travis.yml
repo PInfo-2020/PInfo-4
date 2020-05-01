@@ -1,5 +1,9 @@
 language: java
-if: branch = master
+
+branches:
+  only:
+    - master
+    - develop 
 
 env:
   global:
@@ -40,13 +44,11 @@ deploy:
       local_dir: files-to-gh-pages
       target_branch: gh-pages
       verbose: true
-      skip_cleanup: true
       keep_history: true
       on:
         branch: master
     # Run deployment script on vm
     - provider: script
-      skip_cleanup: true
       script: cd $TRAVIS_BUILD_DIR; ssh smithlu7@129.194.69.131 'bash ' < deploy_vm.sh
       on:
         branch: master

@@ -21,45 +21,28 @@ public class IngredientRestServiceIT {
 	public void testGetAll() {
 		when().get("/").then().body(containsString("chocolat"));
 	}
-	/*
-	@Test
-	public void testGet() {
-		// ingredientsService.create(getRandomIngredient());
-		Ingredient ingredients1 = getRandomIngredient();
-		Long id = ingredients1.getId();
-		String idLink = "/" + id;
-		System.out.println("TEST : " + ingredients1);
-		System.out.println("TEST : " + idLink);
-		//when().get("/1").then().body(containsString("chocolat"));
-		when().get(idLink).then().body(containsString("chocolat"));
-
-	}
-	*/
-	@Test
-	public void testGet() {
-		System.out.println("part 1");
-		when().get("/4").then().body(containsString("chocolat"));
-		System.out.println("part 2");
-
-	}
 	
 	@Test
-	public void testGet2() {
-		System.out.println("part 1 bis ");
-		when().get1("/heyIciTest").then().body(containsString("10"));
-		System.out.println("part 2 bis");
-
+	public void testGet() {
+		when().get("/2").then().body(containsString("amande"));
 	}
 
-	// see how we want to manage paths !!  
 	@Test
 	public void testComputeCalories() {
-		when().get("/computeCalories/[4, 5]").then().body(containsString("11"));
+		when().get("/computeCalories?id=1&id=2&id=4").then().body(containsString("9"));
 	}
+	
 	
 	@Test
 	public void testGetPossibleIngredients() {
-		when().get("/getPossibleIngredients/choco").then().body(containsString("chocolat"));
+		when().get("/possibleIngredients?ing=choco").then().body(containsString("chocolat"));
 	}
+	
+	
+	@Test
+	public void testCount() {
+		when().get("/count").then().body(containsString("13"));
+	}
+	
 
 }

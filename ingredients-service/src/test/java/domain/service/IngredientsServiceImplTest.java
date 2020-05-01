@@ -89,6 +89,7 @@ class IngredientsServiceImplTest {
 		listID.add(ingredient2.getId());
 		
 		System.out.println(listID);
+		System.out.println(getKcalTotal);
 		
 		int testComputeCalories = ingredientsService.computeCalories(listID);
 		//assertEquals(getKcalTotal, 11)
@@ -126,6 +127,8 @@ class IngredientsServiceImplTest {
 		possibilities.add(possibleIng2);
 		
 		List<Object> possibleIngredients = ingredientsService.getPossibleIngredients("choco");
+		System.out.println("retour de possibilites : ");
+		System.out.println(possibleIngredients);
 		assertEquals(possibilities, possibleIngredients); 
 	}
 	
@@ -136,6 +139,22 @@ class IngredientsServiceImplTest {
 		System.out.println("testGetNonExistant:" + ingredients.size());
 
 		assertNull(ingredientsService.get(Long.MAX_VALUE));
+	}
+	
+	@Test
+	void testCount() {
+		System.out.println("-----------------DEBUT TEST COUNT-----------------");
+		List<Ingredient> ingredients = ingredientsService.getAll();
+		int size = ingredients.size();
+		
+		ingredientsService.create(getRandomIngredient());
+		ingredientsService.create(getRandomIngredient());
+		ingredientsService.create(getRandomIngredient());
+		ingredientsService.create(getRandomIngredient());
+		
+		Long count = ingredientsService.count();
+		assertEquals(size + 4, count);
+		System.out.println("-----------------TEST COUNT TERMINE-----------------");
 	}
 	
 	@Test
