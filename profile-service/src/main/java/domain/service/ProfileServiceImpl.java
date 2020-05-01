@@ -28,19 +28,19 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override				//The @Override annotation indicates that the child class method is over-writing its base class method.
 	public List<Profile> getAll() {
-//		CriteriaBuilder builder = em.getCriteriaBuilder();
-//		CriteriaQuery<Profile> criteria = builder.createQuery(Profile.class);
-//		criteria.from(Profile.class);
-//		return em.createQuery(criteria).getResultList();
-		
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Profile> criteria = builder.createQuery(Profile.class);
 		criteria.from(Profile.class);
+		return em.createQuery(criteria).getResultList();
 		
-		EntityGraph<?> entityGraph = em.createEntityGraph("graph.profileFridgeFavourite");
-		TypedQuery<Profile> q = em.createQuery(criteria);
-		q.setHint("javax.persistence.loadgraph", entityGraph);
-		return q.getResultList();
+//		CriteriaBuilder builder = em.getCriteriaBuilder();
+//		CriteriaQuery<Profile> criteria = builder.createQuery(Profile.class);
+//		criteria.from(Profile.class);
+//		
+//		EntityGraph<?> entityGraph = em.createEntityGraph("graph.profileFridgeFavourite");
+//		TypedQuery<Profile> q = em.createQuery(criteria);
+//		q.setHint("javax.persistence.loadgraph", entityGraph);
+//		return q.getResultList();
 	}
 	
 	@Override

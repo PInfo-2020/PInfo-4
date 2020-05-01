@@ -55,7 +55,7 @@ keycloak:
     extraVolumeMounts: |
       - name: keycloak-realm-secret
         mountPath: "/realm/"
-        readOnly: true          
+        readOnly: true
     extraArgs: -Dkeycloak.import=/realm/realms.json
 
 imagePullSecrets: []
@@ -106,5 +106,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-

@@ -38,32 +38,5 @@ public class Ingrediant implements Serializable  {
 	
 	
 	private int quantite;
-	
-	@ManyToOne
-	@JoinColumn(name="Profile_id",nullable = true)
-	private Profile ingprofile;
-	
-//	   @Override
-//	    public boolean equals(Object o) {
-//	        if (this == o) return true;
-//	 
-//	        if (!(o instanceof Ingrediant))
-//	            return false;
-//	 
-//	        Ingrediant other = (Ingrediant) o;
-//	 
-//	        return id != null &&
-//	               id.equals(other.getId());
-//	    }
-//	 
-//	    @Override
-//	    public int hashCode() {
-//	        return 31;
-//	    }
-//	    
-//	    @Override
-//	    public String toString() {
-//	        return this.getClass().getSimpleName() + "-" + getId();
-//	    }
 
 }

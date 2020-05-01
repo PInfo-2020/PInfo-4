@@ -62,14 +62,14 @@ public class Profile implements Serializable {
 	@NotNull
 	private int score;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "PROFILE_ID", nullable = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "PROFILE_ID", nullable = true) // ??
 //    @OrderColumn
 	private List<Ingrediant> fridge_contents; // <(IngredientID, Quantity)> 
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PROFILE_ID", nullable = true)
 //    @OrderColumn
-	private List<RecetteFav> favourite_recipes; // <(IngredientID, Quantity)> 
+	private List<RecetteFav> favourite_recipes; // <(IngredientID, Quantity)>
 	
 }
