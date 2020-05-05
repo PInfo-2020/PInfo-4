@@ -24,7 +24,7 @@ public class RecipetRestServiceIT {
 	@Test
 	public void testCount() {
 		
-		when().get("/count").then().body(containsString("1"));
+		when().get("/count").then().body(containsString("2"));
 
 	}
 	
@@ -38,9 +38,10 @@ public class RecipetRestServiceIT {
 		
 		//Seemes to receive only ingredients and multiple times
 		
-		when().get("/getRecipe/1").then().body(containsString("pizza")); //Test name  -OK
-		when().get("/getRecipe/1").then().body(containsString("90")); //Test ingredients-OK
-		when().get("/getRecipe/1").then().body(containsString("Mauvais")); //Test commentaire
+		when().get("/getRecipe/2").then().body(containsString("pizza")); 
+		when().get("/getRecipe/2").then().body(containsString("91")); 
+		when().get("/getRecipe/2").then().body(containsString("Mauvais"));
+		when().get("/getRecipe/2").then().body(containsString("Bon"));
 	}
 	
 	
