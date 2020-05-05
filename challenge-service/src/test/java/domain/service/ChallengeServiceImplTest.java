@@ -49,7 +49,7 @@ class ChallengeServiceImplTest {
 		assertEquals(size + 4, challengeService.getAll().size());
 		System.out.println("-----------------TEST GETALL TERMINE-----------------");
 	}
-
+//log4j.logger.net.sf.hibernate.type=debug
 	@Test
 	void testCount() {
 		System.out.println("-----------------DEBUT TEST COUNT-----------------");
