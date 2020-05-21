@@ -3,7 +3,7 @@ entries:
   fridgehub:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-05-19T20:06:39.910414892Z"
+    created: "2020-05-21T18:46:54.705703+02:00"
     dependencies:
     - alias: ingredient-db
       name: postgresql
@@ -37,4 +37,4 @@ entries:
     urls:
     - fridgehub-0.1.0.tgz
     version: 0.1.0
-generated: "2020-05-19T20:06:39.893565278Z"
+generated: "2020-05-21T18:46:54.67732+02:00"
