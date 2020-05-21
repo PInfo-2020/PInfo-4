@@ -3,7 +3,7 @@ entries:
   fridgehub:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-05-21T19:17:02.05885+02:00"
+    created: "2020-05-21T19:28:34.885066+02:00"
     dependencies:
     - alias: ingredient-db
       name: postgresql
@@ -31,10 +31,10 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 7.2.9
     description: A Helm chart for deploying the PINFO microservice architecture
-    digest: ccb278d3927e64696d36b91167cb5f846898f41e81b9b863e2e843242b8af560
+    digest: 20a28fd5da573839d858a5353a1ebf8bfb6f123009699e3ea92ce88780faae3e
     name: fridgehub
     type: application
     urls:
     - fridgehub-0.1.0.tgz
     version: 0.1.0
-generated: "2020-05-21T19:17:01.372503+02:00"
+generated: "2020-05-21T19:28:34.678133+02:00"
